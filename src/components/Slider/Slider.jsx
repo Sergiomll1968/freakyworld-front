@@ -6,11 +6,11 @@ import { mobile } from '../../responsive.js';
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 60vh;
   display: flex;
   position: relative;
   overflow: hidden;
-  margin-top: 10px;
+  margin-top: 20px;
   ${mobile({ display: 'none' })}
 `;
 
@@ -35,68 +35,82 @@ const Arrow = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
-  height: 100%;
+  height: 20%;
   transition: all 1.5s ease;
   transform: translate(${(props) => props.$slideindex * -100}vw);
 `;
 
 const Slide = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 110vh;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  background-image: url(${(props) => props.$bg});
+  background-size: cover;
+  overflow: hidden;
+`;
+
+const InfoContainer = styled.div`
+  padding: 10px;
+  width: 100%;
+  position: absolute;
+  top: 7px;
+  left: 200px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  background-color: ${(props) => props.$bg};
 `;
 
 const ImgContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
-  flex: 1;
-  position: relative;
   display: flex;
-  align-items: center;
   justify-content: center;
-  max-width: 50%;
+  align-items: center;
 `;
 
 const Image = styled.img`
   max-width: 100%;
-  height: auto;
-`;
-
-const InfoContainer = styled.div`
-  flex: 1;
-  padding: 50px;
+  max-height: 100%;
+  width: 100%; 
+  height: 100%; 
 `;
 
 const Title = styled.h1`
-  font-size: 70px;
+  font-size: 80px;
   font-family: 'Lobster';
+  color: #333; 
+  margin-top: 25px;
+  margin-left: 50px;
 `;
 
 const Description = styled.p`
-  margin: 50px 0px;
-  font-size: 20px;
-  font-weight: 400;
-  letter-spacing: 3px;
-  font-size: 20px;
-  font-family: 'Lobster';
+font-size: 30px;
+font-family: 'Lobster';
+color: #333;
+margin-top: -35px;
 `;
 
 const Button = styled.button`
   padding: 10px 20px;
-  font-size: 20px;
-  background-color: transparent;
-  color: #333;
+  font-family: 'Lobster';
+  font-size: 18px;
+  color: #111;
   cursor: pointer;
   transition: box-shadow 0.3s;
-  border: none;
+  border: 0;
   border-radius: 5px;
-  box-shadow: 5px 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
 
   &:hover {
     background-color: #999;
-    color: #fff;
-    box-shadow: 10px 0 20px rgba(0, 0, 0, 0.2);
+    color: #fff; 
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
   }
 `;
 

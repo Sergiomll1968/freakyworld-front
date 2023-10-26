@@ -1,19 +1,34 @@
+import React, { useState } from "react";
 import { styled } from "styled-components";
-import NavBar from '../../components/NavBar/NavBar.jsx';
-import Announcement from '../../components/Announcement/Announcement.jsx';
-import Products from '../../components/Products/Products.jsx';
-import Newsletter from '../../components/Newsletter/Newsletter.jsx';
-import Footer from '../../components/Footer/Footer.jsx';
-import { mobile } from '../../responsive.js';
+import NavBar from "../../components/NavBar/NavBar.jsx";
+import Announcement from "../../components/Announcement/Announcement.jsx";
+import Newsletter from "../../components/Newsletter/Newsletter.jsx";
+import Footer from "../../components/Footer/Footer.jsx";
+import { mobile } from "../../responsive.js";
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { shirts } from "../../data.js";
 
-const Container = styled.div`
-  
-`;
+const Container = styled.div``;
 
 const Title = styled.h1`
   margin: 20px;
+`;
+
+const FlexContainer = styled.div`
+  display: flex;
+  gap: 20px;
+  margin: 20px;
+`;
+
+const FlexItem = styled.div`
+  text-align: center;
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+`;
+
+const Img = styled.img`
+  max-width: 100%;
+  height: auto;
 `;
 
 const FilterContainer = styled.div`
@@ -39,68 +54,87 @@ const Select = styled.select`
   ${mobile({ margin: "10px 0px" })}
 `;
 
-const Option = styled.option`
-  
-`;
+const Option = styled.option``;
 
 const ProductList = () => {
   const location = useLocation();
-  const cat = location.pathname.split('/')[2];
-  const [filters, setFilters] = useState({});
-  const [sort, setSort] = useState('newest');
+  const cat = location.pathname.split("/")[2];
 
-  const handleFilters = (e) =>{
-    const value = e.target.value;
-    setFilters({
-      ...filters,
-      [e.target.name]: value
-    })
-  }
+  const [selectedColor, setSelectedColor] = useState("all");
+  const [selectedSize, setSelectedSize] = useState("all");
+  const [selectedModel, setSelectedModel] = useState("all");
+
+  const handleColorFilter = (e) => {
+    const selectedColor = e.target.value;
+    setSelectedColor(selectedColor);
+  };
+
+  const handleSizeFilter = (e) => {
+    const selectedSize = e.target.value;
+    setSelectedSize(selectedSize);
+  };
+
+  const handleModelFilter = (e) => {
+    const selectedModel = e.target.value;
+    setSelectedModel(selectedModel);
+  };
 
   return (
     <Container>
-      <Announcement/>
-      <NavBar/>
+      <Announcement />
+      <NavBar />
       <Title>{cat}</Title>
       <FilterContainer>
         <Filter>
-          <FilterText>
-            Filtrar productos:
-          </FilterText>
-          <Select name='color' onChange={handleFilters}>
-            <Option disabled>Color</Option>
-            <Option>white</Option>
-            <Option>black</Option>
-            <Option>red</Option>
-            <Option>blue</Option>
-            <Option>yellow</Option>
-            <Option>green</Option>
-          </Select>
-          <Select name='size' onChange={handleFilters}>
-            <Option disabled>Size</Option>
-            <Option>XS</Option>
-            <Option>S</Option>
-            <Option>M</Option>
-            <Option>L</Option>
-            <Option>XL</Option>
+          <FilterText>Filtrar por color:</FilterText>
+          <Select name="color" onChange={handleColorFilter}>
+            <Option value="all">Todos los colores</Option>
+            <Option value="white">Blanco</Option>
+            <Option value="black">Negro</Option>
+            <Option value="red">Rojo</Option>
+            <Option value="blue">Azul</Option>
+            <Option value="yellow">Amarillo</Option>
           </Select>
         </Filter>
         <Filter>
-          <FilterText>
-            Ordenar productos:
-          </FilterText>
-          <Select onChange={e => setSort(e.target.value)}>
-            <Option value ='newest' >Novedades</Option>
-            <Option value ='asc' >Precio (asc)</Option>
-            <Option value ='desc' >Precio (desc)</Option>
+          <FilterText>Filtrar por talla:</FilterText>
+          <Select name="size" onChange={handleSizeFilter}>
+            <Option value="all">Todas las tallas</Option>
+            <Option value="xs">XS</Option>
+            <Option value="s">S</Option>
+            <Option value="m">M</Option>
+            <Option value="l">L</Option>
+            <Option value="xl">XL</Option>
+          </Select>
+        </Filter>
+        <Filter>
+          <FilterText>Filtrar por modelo:</FilterText>
+          <Select name="model" onChange={handleModelFilter}>
+            <Option value="all">Todos los modelos</Option>
+            <Option value="geek">Geek</Option>
+            <Option value="keeg">Keeg</Option>
+            <Option value="sergys">Sergys</Option>
           </Select>
         </Filter>
       </FilterContainer>
-      <Products cat={cat} filters={filters} sort={sort} />
-      <Newsletter/>
-      <Footer/>
+      <FlexContainer>
+        {shirts
+          .filter(
+            (shirt) =>
+              (selectedColor === "all" || shirt.color.includes(selectedColor)) &&
+              (selectedSize === "all" || shirt.size.includes(selectedSize)) &&
+              (selectedModel === "all" || shirt.model === selectedModel)
+          )
+          .map((shirt) => (
+            <FlexItem key={shirt.id}>
+              <Img src={shirt.img} alt={`Camiseta ${shirt.id}`} />
+            </FlexItem>
+          ))}
+      </FlexContainer>
+      <Newsletter />
+      <Footer />
     </Container>
-  )
-}
+  );
+};
 
 export default ProductList;

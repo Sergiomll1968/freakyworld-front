@@ -86,6 +86,7 @@ const FilterSize = styled.select`
 const FilterSizeOption = styled.option``;
 
 const AddContainer = styled.div`
+border-radius: 15px;
   width: 50%;
   display: flex;
   align-items: center;
@@ -94,6 +95,7 @@ const AddContainer = styled.div`
 `;
 
 const AmountContainer = styled.div`
+border-radius: 15px;
   display: flex;
   align-items: center;
   font-weight: 700;

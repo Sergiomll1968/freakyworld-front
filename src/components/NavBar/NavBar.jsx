@@ -1,20 +1,24 @@
-import {styled} from 'styled-components';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { styled } from 'styled-components';
 import SearchIcon from '@mui/icons-material/Search';
 import Badge from '@mui/material/Badge';
 import { ShoppingCartOutlined } from '@mui/icons-material';
 import { mobile } from '../../responsive.js';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import ukFlag from '../../images/uk-flag.png';
 import spFlag from '../../images/sp-flag.png';
-// import logoImage from '../../images/logoImage.png';
-import { useState } from 'react';
-
-
 
 const Container = styled.div`
-  height: 60px;
-  ${mobile({ height: "50px" })}
+  height: 30px;
+  // ${mobile({ height: '0px' })}
+`;
+
+const MenuItem = styled.div`
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 25px;
+  ${mobile({ fontSize: '12px', marginLeft: '10px' })}
 `;
 
 const Wrapper = styled.div`
@@ -22,7 +26,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  ${mobile({ padding: "10px 0px" })}
+  ${mobile({ padding: '10px 0px' })}
 `;
 
 const Left = styled.div`
@@ -35,15 +39,15 @@ const Language = styled.span`
   font-size: 14px;
   cursor: pointer;
   vertical-align: middle;
-  ${mobile({ display: "none" })}
+  ${mobile({ display: 'none' })}
 
   &:hover {
     text-decoration: underline;
   }
 
   &:after {
-    content: "";
-    background-image: url(${spFlag}); // Por defecto, muestra la bandera de España
+    content: '';
+    background-image: url(${spFlag});
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -80,37 +84,52 @@ const SearchContainer = styled.div`
 
 const Input = styled.input`
   border: none;
-  ${mobile({ width: "50px" })}
+  ${mobile({ width: '50px' })}
 `;
-
-const Center = styled.div`
-  flex: 1;
-  text-align: center;
-`;
-
-// const Logo = styled.h1`
-//   font-weight: bold;
-//   ${mobile({ fontSize: "24px" })}
-// `;
 
 const Right = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  ${mobile({ flex: 2, justifyContent: "center" })}
+  ${mobile({ flex: 2, justifyContent: 'center' })}
 `;
 
-const MenuItem = styled.div`
+const FilterContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const FilterLabel = styled.span`
   font-size: 14px;
   cursor: pointer;
   margin-left: 25px;
-  ${mobile({ fontSize: "12px", marginLeft: "10px" })}
+  color: gray;
+  transition: color 0.3s, text-decoration 0.3s;
 `;
 
-const Navbar = () => {
+const Dropdown = styled.select`
+  font-size: 14px;
+  margin-left: 10px;
+  padding: 5px;
+  border: 1px solid lightgray;
+  border radius: 3px;
+  color: gray;
+
+  &:hover {
+  color: black;
+`;
+
+const Navbar = ({
+  selectedColor,
+  selectedSeason,
+  selectedType,
+  onColorChange,
+  onSeasonChange,
+  onTypeChange,
+}) => {
   const [selectedFlag, setSelectedFlag] = useState('spain');
-  const quantity = useSelector(state => state.cart).quantity;
+  const quantity = useSelector((state) => state.cart).quantity;
 
   const handleLanguageChange = (language) => {
     setSelectedFlag(language);
@@ -121,23 +140,45 @@ const Navbar = () => {
       <Wrapper>
         <Left>
           <Language selected={selectedFlag} onClick={() => handleLanguageChange('spain')}></Language>
-          <UKFlag
-            selected={selectedFlag}
-            onClick={() => handleLanguageChange('uk')}
-          ></UKFlag>
+          <UKFlag selected={selectedFlag} onClick={() => handleLanguageChange('uk')}></UKFlag>
+          <FilterContainer>
+            <FilterLabel>Color:</FilterLabel>
+            <Dropdown value={selectedColor} onChange={(e) => onColorChange(e.target.value)}>
+              <option value="Blanco" style={{ backgroundColor: "#F7F9F9" }}></option>
+              <option value="Azul" style={{ backgroundColor: "#AED6F1" }}></option>
+              <option value="Rosa" style={{ backgroundColor: "#F5B7B1" }}></option>
+              <option value="Rojo" style={{ backgroundColor: "#E74C3C" }}></option>
+              <option value="Verde" style={{ backgroundColor: "#58D68D" }}></option>
+              <option value="Amarillo" style={{ backgroundColor: "#F4D03F" }}></option>
+              <option value="Negro" style={{ backgroundColor: "#273746" }}></option>
+            </Dropdown>
+          </FilterContainer>
+
+          <FilterContainer>
+            <FilterLabel>Temporada:</FilterLabel>
+            <Dropdown value={selectedSeason} onChange={(e) => onSeasonChange(e.target.value)}>
+              <option value="Verano">Verano</option>
+              <option value="Invierno">Invierno</option>
+              <option value="Novedades">Novedades</option>
+            </Dropdown>
+          </FilterContainer>
+
+          <FilterContainer>
+            <FilterLabel>Tipo:</FilterLabel>
+            <Dropdown value={selectedType} onChange={(e) => onTypeChange(e.target.value)}>
+              <option value="Camiseta">Camiseta</option>
+              <option value="Camisa">Sudadera</option>
+            </Dropdown>
+          </FilterContainer>
+        </Left>
+        <Right>
           <SearchContainer>
             <Input placeholder="Search" />
-            <SearchIcon style={{ color: "gray", fontSize: 16 }} />
+            <SearchIcon style={{ color: 'gray', fontSize: 13 }} />
           </SearchContainer>
-        </Left>
-        <Center>
-          <logoImage>LOGOGeek</logoImage>
-        {/* <img src={logoImage} alt="Logo" style={{ height: "65px" }} /> */}
-        </Center>
-        <Right>
           <MenuItem>REGISTER</MenuItem>
           <MenuItem>SIGN IN</MenuItem>
-          <Link to='/cart'>
+          <Link to="/cart">
             <MenuItem>
               <Badge badgeContent={quantity} color="primary">
                 <ShoppingCartOutlined />
@@ -151,8 +192,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
-
-
-

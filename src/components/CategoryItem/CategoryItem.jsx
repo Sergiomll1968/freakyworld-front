@@ -48,7 +48,7 @@ const Info = styled.div`
 const Title = styled.h1`
    font-family: 'Lobster';
    color: #333;
-   margin-bottom: 20px;
+  //  margin-bottom: 20px;
 `;
 
 const Button = styled.button`

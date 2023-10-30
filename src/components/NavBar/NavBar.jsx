@@ -115,19 +115,10 @@ const Dropdown = styled.select`
   border: 1px solid lightgray;
   border radius: 3px;
   color: gray;
+  `;
+  
 
-  &:hover {
-  color: black;
-`;
-
-const Navbar = ({
-  selectedColor,
-  selectedSeason,
-  selectedType,
-  onColorChange,
-  onSeasonChange,
-  onTypeChange,
-}) => {
+const Navbar = () => {
   const [selectedFlag, setSelectedFlag] = useState('spain');
   const quantity = useSelector((state) => state.cart).quantity;
 
@@ -143,7 +134,7 @@ const Navbar = ({
           <UKFlag selected={selectedFlag} onClick={() => handleLanguageChange('uk')}></UKFlag>
           <FilterContainer>
             <FilterLabel>Color:</FilterLabel>
-            <Dropdown value={selectedColor} onChange={(e) => onColorChange(e.target.value)}>
+            <Dropdown>
               <option value="Blanco" style={{ backgroundColor: "#F7F9F9" }}></option>
               <option value="Azul" style={{ backgroundColor: "#AED6F1" }}></option>
               <option value="Rosa" style={{ backgroundColor: "#F5B7B1" }}></option>
@@ -156,7 +147,7 @@ const Navbar = ({
 
           <FilterContainer>
             <FilterLabel>Temporada:</FilterLabel>
-            <Dropdown value={selectedSeason} onChange={(e) => onSeasonChange(e.target.value)}>
+            <Dropdown>
               <option value="Verano">Verano</option>
               <option value="Invierno">Invierno</option>
               <option value="Novedades">Novedades</option>
@@ -165,7 +156,7 @@ const Navbar = ({
 
           <FilterContainer>
             <FilterLabel>Tipo:</FilterLabel>
-            <Dropdown value={selectedType} onChange={(e) => onTypeChange(e.target.value)}>
+            <Dropdown>
               <option value="Camiseta">Camiseta</option>
               <option value="Camisa">Sudadera</option>
             </Dropdown>

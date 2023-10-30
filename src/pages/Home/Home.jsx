@@ -8,7 +8,7 @@ import Slider from '../../components/Slider/Slider';
 import './Home.css';
 
 const Home = () => {
-  return (
+ return (
     <div>
       <Announcement/>
       <NavBar/>

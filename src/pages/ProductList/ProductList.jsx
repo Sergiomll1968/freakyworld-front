@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { styled } from "styled-components";
 import NavBar from "../../components/NavBar/NavBar.jsx";
 import Announcement from "../../components/Announcement/Announcement.jsx";
-import Newsletter from "../../components/Newsletter/Newsletter.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
 import { mobile } from "../../responsive.js";
 import { useLocation } from "react-router-dom";
@@ -131,7 +130,6 @@ const ProductList = () => {
             </FlexItem>
           ))}
       </FlexContainer>
-      <Newsletter />
       <Footer />
     </Container>
   );

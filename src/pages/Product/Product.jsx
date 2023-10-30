@@ -1,7 +1,6 @@
 import { styled } from "styled-components";
 import NavBar from '../../components/NavBar/NavBar.jsx';
-import Announcement from '../../components/Announcement/Announcement.jsx';
-import Newsletter from '../../components/Newsletter/Newsletter.jsx';
+// import Announcement from '../../components/Announcement/Announcement.jsx';
 import Footer from '../../components/Footer/Footer.jsx';
 import { Add, Remove } from "@mui/icons-material";
 import { mobile } from '../../responsive.js';
@@ -136,7 +135,7 @@ const Product = () => {
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const res = await publicRequest.get('/products/'+id);
+        const res = await publicRequest.get('/products/' + id);
         setProduct(res.data);
       } catch (error) {
         console.log(error);
@@ -144,7 +143,7 @@ const Product = () => {
     }
     getProduct();
   }, [id])
-  
+
   const handleQuantity = (type) => {
     if (type === 'dec') {
       (quantity > 1) && setQuantity(quantity - 1);
@@ -159,8 +158,8 @@ const Product = () => {
 
   return (
     <Container>
-      <Announcement/>
-      <NavBar/>
+      {/* <Announcement/> */}
+      <NavBar filterNavBar={false} />
       <Wrapper>
         <ImgContainer>
           <Image src={product.img} />
@@ -179,9 +178,9 @@ const Product = () => {
             <Filter>
               <FilterTitle>Size</FilterTitle>
               <FilterSize onChange={(e) => setSize(e.target.value)}>
-              {product.size?.map(s => (
-                <FilterSizeOption key={s}>{s}</FilterSizeOption>
-              ))}
+                {product.size?.map(s => (
+                  <FilterSizeOption key={s}>{s}</FilterSizeOption>
+                ))}
               </FilterSize>
             </Filter>
           </FilterContainer>
@@ -189,14 +188,13 @@ const Product = () => {
             <AmountContainer>
               <Remove onClick={() => handleQuantity('dec')} />
               <Amount>{quantity}</Amount>
-              <Add onClick={() => handleQuantity('inc')}/>
+              <Add onClick={() => handleQuantity('inc')} />
             </AmountContainer>
             <Button onClick={handleClick} >ADD TO CART</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>
-      <Newsletter/>
-      <Footer/>
+      <Footer />
     </Container>
   )
 }

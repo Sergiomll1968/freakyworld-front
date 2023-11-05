@@ -27,7 +27,7 @@ const FilterNavBar = () => {
     <>
     <FilterContainer>
             <FilterLabel>Color:</FilterLabel>
-            <Dropdown>
+            <Dropdown name="colors" >
               <option value="Blanco" style={{ backgroundColor: "#F7F9F9" }}></option>
               <option value="Azul" style={{ backgroundColor: "#AED6F1" }}></option>
               <option value="Rosa" style={{ backgroundColor: "#F5B7B1" }}></option>
@@ -40,7 +40,7 @@ const FilterNavBar = () => {
 
           <FilterContainer>
             <FilterLabel>Temporada:</FilterLabel>
-            <Dropdown>
+            <Dropdown name="seasons">
               <option value="Verano">Verano</option>
               <option value="Invierno">Invierno</option>
               <option value="Novedades">Novedades</option>
@@ -49,7 +49,7 @@ const FilterNavBar = () => {
 
           <FilterContainer>
             <FilterLabel>Tipo:</FilterLabel>
-            <Dropdown>
+            <Dropdown name="clotheType">
               <option value="Camiseta">Camiseta</option>
               <option value="Camisa">Sudadera</option>
             </Dropdown>

@@ -6,10 +6,12 @@ import Login from "./pages/Login/Login.jsx";
 import Register from "./pages/Register/Register.jsx";
 import Cart from "./pages/Cart/Cart.jsx";
 import Success from "./pages/Success/Success.jsx";
-import { useSelector } from "react-redux";
+import WhistList from "./pages/WhistList/WhistList.jsx";
+// import { useSelector } from "react-redux";
 
 const MainRouter = () => {
-  const user = useSelector(state => state.user.currentUser);
+  // const user = useSelector(state => state.user.currentUser);
+  
   return useRoutes(
     [
       {
@@ -24,13 +26,16 @@ const MainRouter = () => {
         element: <Product />,
         path: '/product/:id',
       },
-      // { element: <Login />,
-      { element: user ? <Home /> : <Login />,
+      { element: <Login />,
         path: '/login',
       },
       {
-        element: user ? <Home /> : <Register />,
+        element: <Register />,
         path: '/register',
+      },
+      {
+        element: <WhistList />,
+        path: '/whistlist',
       },
       {
         element: <Cart />,

@@ -1,16 +1,15 @@
 import { useState, useEffect } from 'react';
-import { ArrowLeftOutlined, ArrowRightOutlined } from '@mui/icons-material';
 import { styled } from 'styled-components';
 import { sliderItems } from '../../data';
 import { mobile } from '../../responsive.js';
 
 const Container = styled.div`
   width: 100%;
-  height: 60vh;
+  height: 50vh;
   display: flex;
   position: relative;
   overflow: hidden;
-  margin-top: 20px;
+  // margin-top: 20px;
   ${mobile({ display: 'none' })}
 `;
 
@@ -42,7 +41,7 @@ const Wrapper = styled.div`
 
 const Slide = styled.div`
   width: 100vw;
-  height: 110vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -67,8 +66,8 @@ const ImgContainer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 40%;
+  height: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,7 +82,7 @@ const Image = styled.img`
 
 const Title = styled.h1`
   font-size: 80px;
-  font-family: 'Lobster';
+  font-family: '>Verdana';
   color: #333; 
   margin-top: 25px;
   margin-left: 50px;
@@ -91,14 +90,14 @@ const Title = styled.h1`
 
 const Description = styled.p`
 font-size: 30px;
-font-family: 'Lobster';
+font-family: '>Verdana';
 color: #333;
 margin-top: -35px;
 `;
 
 const Button = styled.button`
   padding: 10px 20px;
-  font-family: 'Lobster';
+  font-family: '>Verdana';
   font-size: 18px;
   color: #111;
   cursor: pointer;
@@ -142,7 +141,6 @@ const Slider = () => {
   return (
     <Container>
       <Arrow direction="left" onClick={() => handleClick('left')}>
-        <ArrowLeftOutlined />
       </Arrow>
       <Wrapper $slideindex={slideIndex}>
         {sliderItems.map((item) => (
@@ -159,10 +157,10 @@ const Slider = () => {
         ))}
       </Wrapper>
       <Arrow direction="right" onClick={() => handleClick('right')}>
-        <ArrowRightOutlined />
       </Arrow>
     </Container>
   );
 };
 
 export default Slider;
+

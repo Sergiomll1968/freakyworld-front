@@ -5,13 +5,13 @@ import NavBar from '../../components/NavBar/NavBar';
 // import Newsletter from '../../components/Newsletter/Newsletter';
 import Products from '../../components/Products/Products';
 import Slider from '../../components/Slider/Slider';
-import './Home.css';
+// import './Home.css';
 
 const Home = () => {
  return (
     <div>
-      <Announcement/>
       <NavBar/>
+      <Announcement/>
       <Slider/>
       <Categories/>
       <Products/>

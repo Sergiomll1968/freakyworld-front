@@ -4,9 +4,14 @@ import spFlag from '../../images/sp-flag.png';
 import ukFlag from '../../images/uk-flag.png';
 
 export const Container = styled.div`
-  height: 30px;
-  margin-bottom: 30px;
-  // ${mobile({ height: '0px' })}
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  z-index: 100;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 `;
 
 export const MenuItem = styled.div`
@@ -48,7 +53,7 @@ export const SpainFlag = styled.span`
   display: inline-block;
   margin-left: 5px;
   cursor: pointer;
-  opacity: ${(props) => (props.selected === 'spain' ? 1 : 0.5)};
+  opacity: ${(props) => (props.selected === 'spain' ? 1 : 0.3)};
   vertical-align: middle;
 `;
 
@@ -62,7 +67,7 @@ export const UKFlag = styled.span`
   display: inline-block;
   margin-left: 5px;
   cursor: pointer;
-  opacity: ${(props) => (props.selected === 'uk' ? 1 : 0.5)};
+  opacity: ${(props) => (props.selected === 'uk' ? 1 : 0.3)};
   vertical-align: middle;
 `;
 

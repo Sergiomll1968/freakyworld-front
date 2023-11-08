@@ -58,6 +58,7 @@ const FilterOption = styled.label`
   padding: 5px;
   padding: 5px 5px;
   margin-right: 5px;
+  // margin-right: 5px;
 `;
 
 const FilterCheckbox = styled.input`

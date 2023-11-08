@@ -41,13 +41,29 @@ export const Input = styled.input`
   padding: 10px;
 `;
 
+export const ConditionsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+`;
+
 export const Agreement = styled.span`
   font-size: 12px;
-  margin: 20px 0px;
+`;
+
+export const NotAgreement = styled(Agreement)`
+  color: red;
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 export const Button = styled.button`
   width: 40%;
+  margin-top: 20px;
   border: none;
   padding: 15px 20px;
   background-color: teal;

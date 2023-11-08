@@ -28,6 +28,11 @@ const Login = () => {
         body: JSON.stringify({ 'username': username, 'password': password }),
       });
   }
+
+  const handleNewAccount = (e) => {
+    e.preventDefault();
+    navigate('/register');
+  }
   
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error!</div>;
@@ -49,7 +54,7 @@ const Login = () => {
           />
           <Button onClick={handleClick}>LOGIN</Button>
           <Link>DO NOT YOU REMEMBER THE PASSWORD</Link>
-          <Link>CREATE A NEW ACCOUNT</Link>
+          <Link onClick={handleNewAccount}>CREATE A NEW ACCOUNT</Link>
         </Form>
       </Wrapper>
     </Container>

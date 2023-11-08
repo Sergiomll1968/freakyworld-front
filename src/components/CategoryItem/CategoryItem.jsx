@@ -5,10 +5,11 @@ import { Link } from 'react-router-dom';
 const Container = styled.div`
   flex: 1;
   margin: 13px;
-  height: 70vh;
+  height: 40vh;
   position: relative;
   box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
+  margin-top: -45px;
 `;
 
 const Image = styled.img`

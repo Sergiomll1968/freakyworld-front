@@ -26,7 +26,7 @@ const Container = styled.div`
   margin: 5px;
   min-width: 250px;
   height: 350px;
-  background-color: #f5fbfd;
+  // background-color: #f5fbfd;
   position: relative;
 
   &:hover ${Info}{

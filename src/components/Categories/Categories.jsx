@@ -4,10 +4,10 @@ import CategoryItem from '../CategoryItem/CategoryItem.jsx';
 import { mobile } from '../../responsive.js';
 
 const Container = styled.div`
-  background-color: #f5fbfd;
+  // background-color: #f5fbfd;
   border-radius: 15px;
   display: flex;
-  padding: 20px;
+  padding: -20px;
   justify-content: space-between;
   ${mobile({ padding: "0px", flexDirection: "column" })}
 `;

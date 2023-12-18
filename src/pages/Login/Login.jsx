@@ -6,16 +6,19 @@ import { useFetchData } from '../../hooks/useFetchData.js';
 import { useUser } from '../../zustand/store.js';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
+  const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const setUser = useUser( state => state.setUser );
+  const setUsername = useUser( state => state.setUsername );
+  const setEmail = useUser( state => state.setEmail );
+  const setToken = useUser( state => state.setToken );
   const { fetchData, data, error, loading } = useFetchData();
 
   useEffect(() => {
     if (data) {
-      console.log('data', data);
-      setUser({ username: data.username, email: data.email, token: data.token});
+      setUsername(data.username);
+      setEmail(data.email);
+      setToken(data.token);
       navigate('/');
     }
   }, [data]);
@@ -45,7 +48,7 @@ const Login = () => {
           <Input
             name='username'
             placeholder='username'
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setUserName(e.target.value)}
           />
           <Input
             placeholder='password'

@@ -17,7 +17,7 @@ const FilterLabel = styled.span`
 
   &:hover {
     color: black;
-    background-color: #red;
+    background-color: red;
     width: 100%;
     height: 100%;
     // box-shadow: 0 4px 8px rgba(0.3, 0.3, 0.3, 0.3);
@@ -25,7 +25,8 @@ const FilterLabel = styled.span`
 `;
 
 const FilterOptionsContainer = styled.div`
-  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  /* display: ${({ isOpen }) => (isOpen ? 'block' : 'none')}; */
+  display: ${props => (props.$isopen ? 'block' : 'none')};
   position: absolute;
   background-color: #fff;
   z-index: 1;
@@ -187,7 +188,7 @@ const FilterNavBar = () => {
       <FilterLabel onClick={() => toggleOptions('color')}>
         Color
       </FilterLabel>
-      <FilterOptionsContainer isOpen={colorOptionsVisible} style={{ left: '5%' }}>
+      <FilterOptionsContainer $isopen={colorOptionsVisible} style={{ left: '5%' }}>
         {colorOptions.map((colorOption) => (
           <FilterOption key={colorOption.value}>
             <FilterCheckbox
@@ -196,7 +197,7 @@ const FilterNavBar = () => {
               checked={selectedColors.includes(colorOption.value)}
               onChange={handleColorChange}
             />
-            <ColorSwatch backgroundColor={colorOption.backgroundColor} />
+            <ColorSwatch backgroundColor={colorOption.backgroundcolor} />
           </FilterOption>
         ))}
       </FilterOptionsContainer>
@@ -204,7 +205,7 @@ const FilterNavBar = () => {
       <FilterLabel onClick={() => toggleOptions('season')}>
         Temporada
       </FilterLabel>
-      <FilterOptionsContainer isOpen={seasonOptionsVisible} style={{ left: '28%' }}>
+      <FilterOptionsContainer $isopen={seasonOptionsVisible} style={{ left: '28%' }}>
         {seasonOptions.map((seasonOption) => (
           <FilterOption key={seasonOption}>
             <FilterCheckbox
@@ -221,7 +222,7 @@ const FilterNavBar = () => {
       <FilterLabel onClick={() => toggleOptions('type')}>
         Tipo
       </FilterLabel>
-      <FilterOptionsContainer isOpen={typeOptionsVisible} style={{ left: '55%' }}>
+      <FilterOptionsContainer $isopen={typeOptionsVisible} style={{ left: '55%' }}>
         {typeOptions.map((typeOption) => (
           <FilterOption key={typeOption}>
             <FilterCheckbox
@@ -238,7 +239,7 @@ const FilterNavBar = () => {
       <FilterLabel onClick={() => toggleOptions('size')}>
         Talla
       </FilterLabel>
-      <FilterOptionsContainer isOpen={sizeOptionsVisible} style={{ left: '85%' }}>
+      <FilterOptionsContainer $isopen={sizeOptionsVisible} style={{ left: '85%' }}>
         {sizeOptions.map((sizeOption) => (
           <FilterOption key={sizeOption}>
             <FilterCheckbox

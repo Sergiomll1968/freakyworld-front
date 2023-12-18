@@ -32,7 +32,7 @@ const Register = () => {
       method: 'POST',
       body: JSON.stringify({ 'username': username, 'email': email, 'password': password }),
     });
-    
+    //si es ok etc
   }
 
   return (

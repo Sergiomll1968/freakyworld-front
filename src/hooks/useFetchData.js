@@ -11,19 +11,21 @@ export function useFetchData (defaultValue) {
       mode = 'cors',
       method = 'GET',
       body,
-      headers = {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': '*',
-        'Access-Control-Allow-Credentials': true,
-      }
+      headers
     }) {
     setLoading(true);
+    const header = {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Credentials': true,
+      ...headers
+    };
     try {
       const response = await fetch(`${route}`, {
         mode,
         method,
-        headers,
+        headers: header,
         body,
       });
 
